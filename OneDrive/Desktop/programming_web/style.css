@@ -1,0 +1,61 @@
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f4f4;
+}
+
+header{
+    background:#1e88e5;
+    color:white;
+    padding:15px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:15px;
+}
+
+.hero{
+    text-align:center;
+    padding:50px;
+    background:white;
+}
+
+button{
+    background:#1e88e5;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+#courses{
+    padding:30px;
+}
+
+.course{
+    background:white;
+    padding:20px;
+    margin:20px 0;
+    border-radius:8px;
+}
+
+#contact{
+    padding:30px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+footer{
+    background:#1e88e5;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
