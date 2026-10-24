@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "trained_at": "2026-10-12T20:20:00Z",
+  "yield_model": {
+    "algorithm": "RandomForestRegressor(n_estimators=100)",
+    "r2_score": 0.9705,
+    "mae": 88.79,
+    "rmse": 264.88
+  },
+  "price_model": {
+    "algorithm": "GradientBoostingRegressor(n_estimators=80)",
+    "r2_score": 0.9911,
+    "mae": 176.98
+  }
+}

@@ -1,0 +1,21 @@
+# Canonical copy lives at /.github/workflows/ci.yml
+# This file documents the same pipeline for the architecture tree.
+name: AgriStack CI
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r backend/requirements.txt && python -m pytest -q
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm install && npm run build
+        working-directory: frontend
