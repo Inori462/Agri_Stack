@@ -27,14 +27,15 @@ class Settings(BaseSettings):
     # DATABASE_URL: postgresql://agri:agri@localhost:5432/agristack
     
     
-# CORS
-BACKEND_CORS_ORIGINS: List[str] = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:5173",
-    "https://agri-stack-3245.onrender.com",
-]
+     # CORS
+    BACKEND_CORS_ORIGINS: List[str] = [
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5173",
+        "https://agri-stack-3245.onrender.com",
+    ]
+
 
     # Razorpay (Sandbox / Pilot Mode)
     RAZORPAY_KEY_ID: str = "rzp_test_agristack_sandbox_key"
