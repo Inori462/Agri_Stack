@@ -1,3 +1,4 @@
+
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../../context/AuthContext'
@@ -27,16 +28,21 @@ export default function AppShell() {
     <div className="min-h-screen grid md:grid-cols-[240px_1fr] bg-emerald-50">
       <aside className="bg-agri-900 text-white p-4 space-y-4">
         <div>
-          <p className="text-lg font-semibold">{t('brand')}</p>
-          <p className="text-xs text-emerald-200">{t('tagline')}</p>
+          <p className="text-lg font-semibold">AgriStack</p>
+          <p className="text-xs text-emerald-200">
+            Growing Together, Sharing Prosperity
+          </p>
         </div>
+
         <nav className="space-y-1 text-sm">
           {NAV.filter((item) => !user || item.roles.includes(user.primary_role)).map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `block rounded-md px-3 py-2 ${isActive ? 'bg-agri-700' : 'hover:bg-agri-800'}`
+                `block rounded-md px-3 py-2 ${
+                  isActive ? 'bg-agri-700' : 'hover:bg-agri-800'
+                }`
               }
             >
               {t(item.key)}
@@ -44,9 +50,13 @@ export default function AppShell() {
           ))}
         </nav>
       </aside>
+
       <div className="flex flex-col min-h-screen">
         <header className="flex flex-wrap items-center justify-between gap-3 bg-white border-b px-4 py-3">
-          <p className="text-sm text-agri-800 font-medium">{user?.full_name} · {user?.primary_role}</p>
+          <p className="text-sm text-agri-800 font-medium">
+            {user?.full_name} · {user?.primary_role}
+          </p>
+
           <div className="flex items-center gap-2">
             <select
               className="rounded-md border-emerald-200 text-sm"
@@ -57,6 +67,7 @@ export default function AppShell() {
               <option value="hi">हिंदी</option>
               <option value="mr">मराठी</option>
             </select>
+
             <button
               className="text-sm text-red-700"
               onClick={() => {
@@ -68,11 +79,15 @@ export default function AppShell() {
             </button>
           </div>
         </header>
+
         <main className="p-4 md:p-6 flex-1">
-          <p className="mb-4 text-xs bg-amber-50 border border-amber-200 text-amber-800 rounded-lg px-3 py-2">{t('pilot')}</p>
+          <p className="mb-4 text-xs bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg px-3 py-2">
+            Building a smarter, more transparent future for agriculture.
+          </p>
           <Outlet />
         </main>
       </div>
+
       <AssistantDrawer />
     </div>
   )
