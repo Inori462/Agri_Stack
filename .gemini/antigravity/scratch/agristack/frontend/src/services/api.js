@@ -1,7 +1,12 @@
+
 import axios from 'axios'
 
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  'https://agristack-backend-xgdy.onrender.com/api/v1'
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api/v1',
+  baseURL: API_URL,
 })
 
 api.interceptors.request.use((config) => {
@@ -14,17 +19,24 @@ api.interceptors.response.use(
   (res) => res,
   async (error) => {
     const original = error.config
-    if (error.response?.status === 401 && !original._retry) {
+
+    if (error.response?.status === 401 && original && !original._retry) {
       original._retry = true
       const refresh = localStorage.getItem('agristack_refresh')
+
       if (refresh) {
         try {
           const { data } = await axios.post(
-            `${import.meta.env.VITE_API_URL || '/api/v1'}/auth/refresh`,
+            `${API_URL}/auth/refresh`,
             { refresh_token: refresh }
           )
+
           localStorage.setItem('agristack_access', data.access_token)
-          if (data.refresh_token) localStorage.setItem('agristack_refresh', data.refresh_token)
+
+          if (data.refresh_token) {
+            localStorage.setItem('agristack_refresh', data.refresh_token)
+          }
+
           original.headers.Authorization = `Bearer ${data.access_token}`
           return api(original)
         } catch {
@@ -33,6 +45,7 @@ api.interceptors.response.use(
         }
       }
     }
+
     return Promise.reject(error)
   }
 )
